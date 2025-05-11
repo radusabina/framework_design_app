@@ -1,0 +1,132 @@
+.background {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://i.postimg.cc/2ST5nsZN/Captur-de-ecran-din-2023-11-26-la-19-10-00.png');
+}
+
+.row {
+    margin-right: 0;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+.container {
+    margin-left: 1rem;
+    margin-right: 0;
+    overflow: hidden;
+}
+
+.welcome-text {
+    font-size: 2.813rem;
+    font-weight: bold;
+    color: #fffffd;
+    text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    font-family: Be Vietnam Pro;
+}
+.logo-text {
+    font-size: 1rem;
+    color: #fffffd;
+    font-family: Be Vietnam Pro;
+}
+.first-row {
+    padding-top: 2.5rem;
+}
+.carouselPadding {
+    padding-bottom: calc(100% / 28);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+.carousel-indicators {
+    filter: invert(1);
+}
+
+.text-spacing {
+    letter-spacing: 0.1em;
+}
+
+.my-2 {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.card-img-top {
+    height: 15rem;
+    object-fit: cover;
+}
+.search-box {
+    margin-left: 3%;
+    font-family: Be Vietnam Pro;
+    padding-top: calc(100% / 15);
+}
+.itinerary_default {
+    position: relative;
+    background-color: rgba(126, 152, 174, 0.581);
+    //#a2d8f9b0
+    font-family: Be Vietnam Pro;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    min-height: 23rem;
+}
+
+.itinerary_default:hover {
+    transform: scale(1.02);
+    background-color: #a2d8f9b0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.footer {
+    background-image: url('https://i.postimg.cc/YS1rRj0V/Captur-de-ecran-din-2023-11-26-la-19-49-27.png');
+    background-repeat: repeat-x;
+    height: 8.125rem; /* Adjust the height as needed */
+    background-size: 37.5rem;
+}
+
+.h2 {
+    color: #022c46b0;
+    font-family: Be Vietnam Pro;
+    font-weight: bold;
+    font-size: 1.813rem;
+    text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    padding-left: 2.2rem;
+}
+
+.cards-wrapper {
+    display: flex;
+    place-content: center;
+}
+
+.card {
+    margin: 0.5em;
+}
+
+.image-wrapper {
+    height: 22vw;
+    margin: 0 auto;
+}
+
+.cards {
+    padding-left: 0;
+}
+
+.specific-padding {
+    padding-top: 1%;
+    padding-left: 0;
+    padding-right: 0;
+}

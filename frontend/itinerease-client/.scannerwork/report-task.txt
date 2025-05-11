@@ -1,0 +1,6 @@
+projectKey=itinerease-frontend
+serverUrl=http://localhost:9000
+serverVersion=25.3.0.104237
+dashboardUrl=http://localhost:9000/dashboard?id=itinerease-frontend
+ceTaskId=e544f034-89ef-4b44-a73d-f6e6317152fd
+ceTaskUrl=http://localhost:9000/api/ce/task?id=e544f034-89ef-4b44-a73d-f6e6317152fd

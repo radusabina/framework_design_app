@@ -1,0 +1,330 @@
+<div class="d-flex justify-content-between align-items-center vh-100 text-font">
+    <div class="itinerary-details d-flex justify-content-center w-100">
+        <div class="row">
+            <div class="col-md-6 first-column">
+                <div class="details mb-5">
+                    <h2><i class="bi bi-info-square-fill"></i> Details</h2>
+
+                    <div class="itinerary-name mb-2">
+                        <label>Itinerary name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="itineraryName"
+                            placeholder="Itinerary name" />
+                    </div>
+
+                    <div class="itinerary-budget mb-2">
+                        <label>Budget:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="budget"
+                            placeholder="Budget" />
+                    </div>
+
+                    <div class="itinerary-persons">
+                        <label>Persons:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="numberOfPersons"
+                            placeholder="Persons" />
+                    </div>
+                </div>
+
+                <div class="location-details mb-5">
+                    <h2><i class="bi bi-pin-map-fill"></i> Location</h2>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="departure-date mb-2">
+                                <label>Departure date: </label>
+                                <div class="input-group">
+                                    <input
+                                        class="form-control"
+                                        placeholder="yyyy-mm-dd"
+                                        name="dp"
+                                        [(ngModel)]="startDate"
+                                        ngbDatepicker
+                                        #dDeparture="ngbDatepicker"
+                                        [minDate]="minDate" />
+                                    <button
+                                        class="btn btn-outline-secondary bi bi-calendar3"
+                                        (click)="dDeparture.toggle()"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                            <div class="where-from-countries mb-2">
+                                <label>Where from?</label>
+                                <select
+                                    class="form-select"
+                                    aria-label="Country"
+                                    [(ngModel)]="whereFromCountry">
+                                    <option value="" selected>
+                                        {{ whereFromCountry }}
+                                    </option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                </select>
+                            </div>
+
+                            <div class="where-from-cities">
+                                <select
+                                    class="form-select"
+                                    [(ngModel)]="whereFromCity"
+                                    aria-label="City">
+                                    <option value="" selected>
+                                        {{ whereFromCity }}
+                                    </option>
+                                    <option
+                                        *ngFor="
+                                            let cityLeft of onCountryChangeLeft()
+                                        "
+                                        [value]="cityLeft">
+                                        {{ cityLeft }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="return-date mb-2">
+                                <label>Return date:</label>
+                                <div class="input-group">
+                                    <input
+                                        class="form-control"
+                                        placeholder="yyyy-mm-dd"
+                                        name="dp"
+                                        [(ngModel)]="endDate"
+                                        ngbDatepicker
+                                        #dReturn="ngbDatepicker"
+                                        [minDate]="minDate" />
+                                    <button
+                                        class="btn btn-outline-secondary bi bi-calendar3"
+                                        (click)="dReturn.toggle()"
+                                        type="button"></button>
+                                </div>
+                            </div>
+                            <div class="where-to-countries mb-2">
+                                <label>Where to?</label>
+                                <select
+                                    class="form-select"
+                                    aria-label="Country"
+                                    [(ngModel)]="whereToCountry">
+                                    <option value="" selected>
+                                        {{ whereToCountry }}
+                                    </option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                </select>
+                            </div>
+
+                            <div class="where-to-cities">
+                                <select
+                                    class="form-select"
+                                    [(ngModel)]="whereToCity"
+                                    aria-label="City">
+                                    <option value="" selected>
+                                        {{ whereToCity }}
+                                    </option>
+                                    <option
+                                        *ngFor="
+                                            let cityRight of onCountryChangeRight()
+                                        "
+                                        [value]="cityRight">
+                                        {{ cityRight }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-details">
+                    <h2><i class="bi bi-car-front-fill"></i> Transport</h2>
+
+                    <div class="transport-type mb-2">
+                        <label>Transport type:</label>
+                        <select
+                            class="form-select"
+                            aria-label="Transport type"
+                            [(ngModel)]="transportType">
+                            <option value="" selected>
+                                {{ transportType }}
+                            </option>
+                            <option value="Car">Car</option>
+                            <option value="Bus">Bus</option>
+                            <option value="Boat">Boat</option>
+                            <option value="Train">Train</option>
+                            <option value="Airplane">Airplane</option>
+                        </select>
+                    </div>
+
+                    <div class="transport-price">
+                        <label>Transport price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="transportPrice"
+                            placeholder="Transport price" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 second-column">
+                <div class="accommodation-details mb-5">
+                    <h2><i class="bi bi-house-fill"></i> Accommodation</h2>
+
+                    <div class="accommodation-name mb-2">
+                        <label>Accommodation name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationName"
+                            placeholder="Accommodation name" />
+                    </div>
+
+                    <div class="accommodation-address mb-2">
+                        <label>Accommodation address:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationAddress"
+                            placeholder="Accommodation address" />
+                    </div>
+
+                    <div class="accmmodation-price">
+                        <label>Accommodation price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationPrice"
+                            placeholder="Accommodation price" />
+                    </div>
+                </div>
+
+                <div class="attrraction-details mb-5">
+                    <h2><i class="bi bi-camera-fill"></i> Attraction</h2>
+
+                    <div class="attraction-name mb-2">
+                        <label>Attraction name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="attractionName"
+                            placeholder="Attraction name"
+                            #AttractionNameField="ngModel"
+                            name="attractionName"
+                            required />
+                        <div
+                            *ngIf="
+                                AttractionNameField.touched &&
+                                AttractionNameField.hasError('required') &&
+                                !addAttractionFailed
+                            "
+                            class="text-danger small">
+                            Attraction name must start with capital letter.
+                        </div>
+                    </div>
+
+                    <div class="attraction-price mb-2">
+                        <label>Attraction price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="attractionPrice"
+                            placeholder="Attraction price"
+                            required
+                            #AttractionPriceField="ngModel"
+                            pattern="^[1-9]\d*(\.\d+)?$" />
+                        <div
+                            *ngIf="AttractionPriceField.touched"
+                            class="text-danger small">
+                            <div
+                                *ngIf="
+                                    AttractionPriceField.hasError('required') &&
+                                    !addAttractionFailed
+                                ">
+                                Price is required.
+                            </div>
+                            <div
+                                *ngIf="
+                                    AttractionPriceField.hasError('pattern')
+                                ">
+                                Please enter a valid number (no leading zero).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attraction-add-button text-end">
+                        <button
+                            class="btn btn-blue w-100"
+                            (click)="onAddAttraction()">
+                            Add attraction
+                        </button>
+                    </div>
+                </div>
+
+                <div class="attraction-list mb-2">
+                    <div
+                        *ngFor="let attraction of attractions"
+                        class="attraction-item mb-2 border rounded px-2">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <div class="attraction">
+                                <strong>{{ attraction.name }}</strong> - Price:
+                                {{ attraction.price }}
+                            </div>
+                            <div>
+                                <button
+                                    class="btn btn-sm btn-blue me-2"
+                                    (click)="onEditAttraction()">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button
+                                    class="btn btn-sm btn-red"
+                                    (click)="onDeleteAttraction(attraction.id)">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button
+                        class="btn btn-danger w-10 mx-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ModalToggle">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    <button
+                        class="btn btn-blue w-50 mx-2"
+                        (click)="onSaveItinerary()">
+                        Save itinerary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end vh-100">
+        <img
+            src="https://i.ibb.co/WyRzXk9/poza-itinerary-edit.jpg"
+            alt="itinerary"
+            class="vh-100" />
+    </div>
+    <app-delete-confirmation-modal></app-delete-confirmation-modal>
+</div>
+>

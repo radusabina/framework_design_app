@@ -1,0 +1,37 @@
+export class ConstantLinks {
+    static readonly Cluj = 'https://i.ibb.co/Y04QJ9T/ro-cluj.jpg';
+    static readonly Constanta = 'https://i.ibb.co/VNqB2c2/ro-constanta.jpg';
+    static readonly Iasi = 'https://i.ibb.co/h93B9ZJ/ro-iasi.jpg';
+    static readonly Timisoara = 'https://i.ibb.co/D9qc9L8/ro-timisoara.jpg';
+    static readonly Chicago = 'https://i.ibb.co/WWP4f32/usa-chicago.jpg';
+    static readonly Houston = 'https://i.ibb.co/V9WFcqr/usa-houston.jpg';
+    static readonly LosAngeles = 'https://i.ibb.co/QNSr5Pk/usa-losangeles.jpg';
+    static readonly Miami = 'https://i.ibb.co/S3sT2jc/usa-miami.jpg';
+    static readonly NewYork = 'https://i.ibb.co/2SJvFf8/usa-newyork.jpg';
+    static readonly Berlin = 'https://i.ibb.co/djjk6VT/de-berlin.jpg';
+    static readonly Cologne = 'https://i.ibb.co/cydH6LB/de-cologne.jpg';
+    static readonly Frankfurt = 'https://i.ibb.co/JCmK6qS/de-frankfurt.jpg';
+    static readonly Hamburg = 'https://i.ibb.co/Sf8X4m4/de-hamburg.jpg';
+    static readonly Munich = 'https://i.ibb.co/F8Pkj43/de-munich.jpg';
+    static readonly Barcelona = 'https://i.ibb.co/ZHCDg4b/es-barcelona.jpg';
+    static readonly Bilbao = 'https://i.ibb.co/k0Q3x3Z/es-bilbao.jpg';
+    static readonly Madrid = 'https://i.ibb.co/M9vx8nn/es-madrid.jpg';
+    static readonly Sevilla = 'https://i.ibb.co/t31mJ2d/es-sevilla.jpg';
+    static readonly Valencia = 'https://i.ibb.co/231Z21v/es-valencia.jpg';
+    static readonly Lyon = 'https://i.ibb.co/qB2syyQ/fr-lyon.jpg';
+    static readonly Marseille = 'https://i.ibb.co/YX23YfQ/fr-marseille.jpg';
+    static readonly Nice = 'https://i.ibb.co/YjdP7gL/fr-nice.jpg';
+    static readonly Paris = 'https://i.ibb.co/GTPD4Sy/fr-paris.jpg';
+    static readonly Toulouse = 'https://i.ibb.co/RDQ80qP/fr-toulouse.jpg';
+    static readonly Florence = 'https://i.ibb.co/H7TKyxw/it-florence.jpg';
+    static readonly Milan = 'https://i.ibb.co/6DFsK54/it-milan.jpg';
+    static readonly Naples = 'https://i.ibb.co/m94VVzq/it-naples.jpg';
+    static readonly Roma = 'https://i.ibb.co/LdzcNdS/it-roma.jpg';
+    static readonly Venice = 'https://i.ibb.co/8zS7ZLs/it-venice.jpg';
+    static readonly Hiroshima = 'https://i.ibb.co/Vgb8rk5/jp-hiroshima.jpg';
+    static readonly Kyoto = 'https://i.ibb.co/J2PdJm0/jp-kyoto.jpg';
+    static readonly Nagoya = 'https://i.ibb.co/PZr0tjy/jp-nagoya.jpg';
+    static readonly Osaka = 'https://i.ibb.co/k5rVrNQ/jp-osaka.jpg';
+    static readonly Tokyo = 'https://i.ibb.co/1zMmxK6/jp-tokyo.jpg';
+    static readonly Bucuresti = 'https://i.ibb.co/2yLBv67/ro-bucuresti.jpg';
+}

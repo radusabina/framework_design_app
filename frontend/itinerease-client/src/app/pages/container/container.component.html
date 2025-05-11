@@ -1,0 +1,158 @@
+<div class="container-fluid">
+    <!-- background image -->
+    <div class="background">
+        <div class="row justify-content-around first-row">
+            <div class="col-5 text-center mt-5 mb-5">
+                <h5 class="mb-3 text-center welcome-text">
+                    Welcome back, {{ loggedUser?.firstName }}!
+                </h5>
+                <span class="logo-text text-justify"
+                    >Make your vacantion stressless with us...</span
+                >
+            </div>
+            <!-- carousel -->
+            <div class="col-3"></div>
+        </div>
+        <!-- itineraries carousel-->
+        <div class="row" style="overflow-x: auto; white-space: nowrap">
+            <div class="col-md-8 align-items-center justify-content-center">
+                <div class="container">
+                    <div
+                        class="row"
+                        style="overflow-x: auto; white-space: nowrap">
+                        <!-- itinerary 1 -->
+                        <div class="col-md-4 specific-padding">
+                            <!-- itinerary add -->
+                            <li
+                                class="card shadow rounded itinerary_default align-items-center justify-content-center"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalToggle">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#ModalToggle">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </li>
+                        </div>
+                        <div class="col-md-5 specific-padding">
+                            <ul class="cards">
+                                <div
+                                    *ngFor="let itinerary of itineraries"
+                                    class="col-md-10"
+                                    style="display: inline-block"
+                                    (click)="openItinerary(itinerary.id)">
+                                    <li
+                                        class="card shadow rounded itinerary_default">
+                                        <img
+                                            class="card-img-top img-fluid mb-4"
+                                            [src]="
+                                                getDestinationImage(
+                                                    itinerary.destination.city
+                                                )
+                                            " />
+                                        <div
+                                            class="d-flex flex-column align-items-center">
+                                            <h3
+                                                class="card-title text-center mb-0">
+                                                {{ itinerary.name }}
+                                            </h3>
+                                            <div
+                                                class="card-content text-center">
+                                                <p class="mb-0">
+                                                    <i
+                                                        class="bi bi-people-fill"></i>
+                                                    {{ itinerary.persons }} prs
+                                                    <i
+                                                        class="bi bi-currency-dollar"></i>
+                                                    {{ itinerary.budget }}
+                                                    <i
+                                                        class="bi bi-calendar"></i>
+                                                    {{
+                                                        calculateDays(itinerary)
+                                                    }}
+                                                    days
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-link-wrapper">
+                                            <a href="" class="card-link"></a>
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <app-modals></app-modals>
+                </div>
+            </div>
+
+            <div class="col-3 carouselPadding align-self-center">
+                <!-- carousel -->
+                <div
+                    id="carouselExampleIndicators"
+                    class="carousel slide shadow p-3 bg-white rounded carousel-div">
+                    <div class="carousel-indicators">
+                        <button
+                            type="button"
+                            data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="0"
+                            class="active"
+                            aria-current="true"
+                            aria-label="Slide 1"></button>
+                        <button
+                            type="button"
+                            data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button
+                            type="button"
+                            data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img
+                                src="https://i.postimg.cc/TY690S47/Captur-de-ecran-din-2023-11-27-la-03-11-21.png"
+                                class="d-block w-100" />
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                src="https://i.postimg.cc/k4WStMqn/Captur-de-ecran-din-2023-11-27-la-03-14-14.png"
+                                class="d-block w-100" />
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                src="https://i.postimg.cc/7YnNW9vx/Captur-de-ecran-din-2023-11-27-la-03-12-09.png"
+                                class="d-block w-100" />
+                        </div>
+                    </div>
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span
+                            class="carousel-control-prev-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span
+                            class="carousel-control-next-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <footer class="footer fixed-bottom"></footer>
+    </div>
+</div>

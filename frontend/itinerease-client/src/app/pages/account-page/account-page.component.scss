@@ -1,0 +1,124 @@
+.vertical-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    height: 100%; /* Ajustează înălțimea liniei pentru a acoperi întreaga înălțime a coloanei */
+    border-left: 3px solid rgba(174, 163, 163, 0.81); /* Grosimea și culoarea liniei */
+    background: rgba(174, 163, 163, 0.81);
+}
+.arrow-back {
+    position: absolute;
+    top: 0px; /* Ajustează această valoare pentru a regla poziția verticală a săgeții */
+    left: 0;
+    display: flex;
+    align-items: center;
+    border-radius: 0.4375rem;
+    border-color: transparent transparent;
+    background: rgba(113, 148, 170, 0.85);
+    width: 2rem;
+    height: 2rem;
+}
+
+.title {
+    margin-bottom: 8.8rem;
+}
+h1 {
+    font-size: 1.488rem;
+}
+h2 {
+    font-size: 1.288rem;
+    font-weight: 400;
+    margin-top: 4%;
+
+    color: #fff;
+}
+.delete-account {
+    color: red;
+}
+.btn-home-back {
+    display: flex;
+    align-items: center;
+    border-radius: 0.4375rem;
+    border-color: transparent transparent;
+    background: rgba(113, 148, 170, 0.85);
+    width: 12.4375rem;
+    height: 2.5875rem;
+}
+.btn-save-mofidy {
+    border-radius: 0.4375rem;
+    border-color: transparent transparent;
+    background: rgba(113, 148, 170, 0.85);
+    width: 8.4375rem;
+    height: 2.5875rem;
+}
+
+.custom-background {
+    background-image: url('https://i.postimg.cc/gjWMXYXp/img-account-backround.jpg');
+    max-height: 28.125rem;
+    background-size: cover;
+    background-position: top center;
+    color: white;
+
+    .container-fluid {
+        max-width: 200rem;
+        align-items: center;
+        padding-top: 6.5rem; //cat de jos sa fie imaginea suprapusa
+        .btn {
+            background: #4c77a6;
+            color: white;
+        }
+        .nav-link {
+            text-decoration: underline;
+        }
+    }
+    .form-control:focus {
+        border-color: #4c77a6;
+        border: 1px;
+    }
+}
+
+.text-account-settings {
+    text-align: left;
+    border-bottom: 1px solid black; /* sau culoarea dorită */
+    padding-bottom: 5px; /* pentru a crea spațiu între text și linie */
+}
+.text-inputs-name {
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    h4 {
+        font-size: 20px;
+    }
+}
+.input-group-prepend {
+    padding-left: 10px;
+}
+
+.Account-settings {
+    display: inline; /* face ca h3 să fie afișat ca un element inline */
+}
+
+.input-group {
+    position: relative; /* Asigură că elementele din interiorul lui pot fi poziționate relativ */
+}
+
+.form-control {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.input-group-append {
+    position: absolute; /* Poziționează grupul de elemente în dreapta */
+    right: 0; /* Aliniere la dreapta a grupului de elemente */
+    top: 0; /* Ajustează poziția verticală a grupului de elemente (opțional) */
+}
+
+.toggle-password {
+    cursor: pointer;
+}
+
+img {
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+}
