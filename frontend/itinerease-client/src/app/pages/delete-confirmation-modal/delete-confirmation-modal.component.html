@@ -1,0 +1,40 @@
+<main class="main text-font">
+    <div class="content">
+        <div
+            class="modal fade"
+            id="ModalToggle"
+            aria-hidden="true"
+            aria-labelledby="ModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <p class="fs-6 mb-0" id="ModalToggleLabel">
+                            Are you sure you want to delete itinerary?
+                        </p>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button
+                            type="button mx-2"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal"
+                            (click)="onDeleteItinerary(itineraryId)">
+                            Delete
+                        </button>
+                        <button
+                            type="button mx-2"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

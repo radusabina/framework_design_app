@@ -1,0 +1,631 @@
+<main class="main text-font">
+    <div class="content">
+        <!-- Modal 1-->
+        <div
+            class="modal fade"
+            id="ModalToggle"
+            aria-hidden="true"
+            aria-labelledby="ModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalToggleLabel">
+                            New itinerary
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label class="form-label">Itinerary name</label>
+                        <!--validare GATA-->
+                        <!--campul sa nu fie gol-->
+                        <!--sa nu fie mai mare de 255 de caractere-->
+                        <input
+                            type="text"
+                            class="form-control itinerary"
+                            [(ngModel)]="itineraryName"
+                            aria-describedby="Itinerary name"
+                            required
+                            name="itineraryName"
+                            #itineraryNameField="ngModel"
+                            minlength="4"
+                            maxlength="255" />
+                        <div
+                            *ngIf="itineraryNameField.touched"
+                            class="text-danger small"
+                            style="margin-top: -1.3rem; text-align: left">
+                            <div
+                                *ngIf="itineraryNameField.hasError('required')">
+                                Name is required.
+                            </div>
+                            <div
+                                *ngIf="
+                                    itineraryNameField.touched &&
+                                    itineraryNameField.hasError('minlength')
+                                ">
+                                The itinerary name must be at least 4 characters
+                                long.
+                            </div>
+                        </div>
+
+                        <!--validare-->
+                        <!--sa nu fie o data din trecut-->
+                        <!---------------asta e primul datapicker------------------>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label"
+                                >Start date:</label
+                            >
+
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input
+                                        class="form-control"
+                                        placeholder="yyyy-mm-dd"
+                                        name="dateStart"
+                                        [(ngModel)]="dateStartModal"
+                                        ngbDatepicker
+                                        #dateStart="ngbDatepicker"
+                                        [minDate]="minDateStart" />
+                                    <button
+                                        class="btn btn-outline-secondary bi bi-calendar3"
+                                        (click)="dateStart.toggle()"
+                                        type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--validare-->
+                        <!--sa nu fie o data din trecut-->
+                        <!--sa nu fie o data inainte data de pornire-->
+                        <!---------------asta e al doilea datapicker------------------>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label"
+                                >End date:</label
+                            >
+
+                            <div class="col-sm-6">
+                                <form class="row row-cols-sm-auto">
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control"
+                                            placeholder="yyyy-mm-dd"
+                                            name="dateEnd"
+                                            [(ngModel)]="dateEndModal"
+                                            ngbDatepicker
+                                            #dateEnd="ngbDatepicker"
+                                            [minDate]="minDateEnd" />
+                                        <button
+                                            class="btn btn-outline-secondary bi bi-calendar3"
+                                            (click)="dateEnd.toggle()"
+                                            type="button"></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!--validare GATA-->
+                        <!--sa nu fie gol-->
+                        <!--sa fie int si pozitiv-->
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label"
+                                >Budget</label
+                            >
+
+                            <div class="col-sm-6">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    [(ngModel)]="budget"
+                                    aria-describedby="input budget"
+                                    required
+                                    name="inputBudget"
+                                    #BugetField="ngModel"
+                                    pattern="^[1-9]\d*(\.\d+)?$" />
+
+                                <div
+                                    *ngIf="BugetField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: 0.1rem;
+                                        margin-left: 0.2rem;
+                                        text-align: left;
+                                    ">
+                                    <div
+                                        *ngIf="BugetField.hasError('required')">
+                                        Budget is required.
+                                    </div>
+                                    <div *ngIf="BugetField.hasError('pattern')">
+                                        Please enter a valid number (no leading
+                                        zero).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-4 col-form-label"
+                                >Number of persons</label
+                            >
+
+                            <div class="col-sm-4">
+                                <select
+                                    class="form-select form-select-sm-1"
+                                    aria-label="Default select"
+                                    required
+                                    #selectField="ngModel"
+                                    name="selectPersonsField"
+                                    [(ngModel)]="selectedPersonsOption">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                                <div
+                                    *ngIf="
+                                        selectField.invalid &&
+                                        selectField.touched
+                                    "
+                                    class="text-danger small">
+                                    Select an option.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button
+                            class="btn btn-blue"
+                            data-bs-target="#ModalToggle2"
+                            data-bs-toggle="modal">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2-->
+        <div
+            class="modal fade"
+            id="ModalToggle2"
+            aria-hidden="true"
+            aria-labelledby="ModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalToggleLabel2">
+                            New itinerary
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label fs-5">Where to?</label>
+
+                                <!-- primele doua   -->
+                                <select
+                                    class="form-select form-select-sm mb-3"
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCountryDestination"
+                                    (change)="onCountryDestinationChange()"
+                                    name="selectedCountryDestination"
+                                    #selectedCountryDestinationInput="ngModel"
+                                    required>
+                                    <option value="" selected>
+                                        Please select a country.
+                                    </option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                    <!-- Alte opțiuni pentru țări -->
+                                </select>
+
+                                <div
+                                    *ngIf="
+                                        selectedCountryDestinationInput.invalid &&
+                                        (selectedCountryDestinationInput.dirty ||
+                                            selectedCountryDestinationInput.touched)
+                                    "
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -1rem;
+                                        margin-bottom: 1rem;
+                                        margin-left: 0.3rem;
+                                        text-align: left;
+                                    ">
+                                    Please select a country.
+                                </div>
+
+                                <select
+                                    class="form-select form-select-sm mb-3"
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCityDestination"
+                                    name="selectedCityDestination"
+                                    #selectedCityDestinationInput="ngModel"
+                                    required>
+                                    <option value="" selected>
+                                        Select the city.
+                                    </option>
+                                    <option
+                                        *ngFor="
+                                            let city of onCountryDestinationChange()
+                                        "
+                                        [value]="city">
+                                        {{ city }}
+                                    </option>
+                                </select>
+
+                                <div
+                                    *ngIf="
+                                        selectedCityDestinationInput.invalid &&
+                                        (selectedCityDestinationInput.dirty ||
+                                            selectedCityDestinationInput.touched)
+                                    "
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -1rem;
+                                        margin-bottom: 1rem;
+                                        margin-left: 0.3rem;
+                                        text-align: left;
+                                    ">
+                                    Please select a city.
+                                </div>
+
+                                <!--ultimele doua-->
+                                <label class="form-label fs-5"
+                                    >Where are you departing from?</label
+                                >
+                                <select
+                                    class="form-select form-select-sm mb-3"
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCountryDeparting"
+                                    (change)="onCountryChangeDeparting()"
+                                    name="selectedCountryDeparting"
+                                    #selectedCountryDepartingInput="ngModel"
+                                    required>
+                                    <option value="" selected>
+                                        Please select a country
+                                    </option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                    <!-- Alte opțiuni pentru țări -->
+                                </select>
+
+                                <div
+                                    *ngIf="
+                                        selectedCountryDepartingInput.invalid &&
+                                        (selectedCountryDepartingInput.dirty ||
+                                            selectedCountryDepartingInput.touched)
+                                    "
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -1rem;
+                                        margin-bottom: 1rem;
+                                        margin-left: 0.3rem;
+                                        text-align: left;
+                                    ">
+                                    Please select a country
+                                </div>
+
+                                <select
+                                    class="form-select form-select-sm mb-3"
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCityDeparting"
+                                    name="selectedCityDeparting"
+                                    #selectedCityDepartingInput="ngModel"
+                                    required>
+                                    <option value="" selected>
+                                        Select the city
+                                    </option>
+                                    <option
+                                        *ngFor="
+                                            let city2 of onCountryChangeDeparting()
+                                        "
+                                        [value]="city2">
+                                        {{ city2 }}
+                                    </option>
+                                </select>
+                                <div
+                                    *ngIf="
+                                        selectedCityDepartingInput.invalid &&
+                                        (selectedCityDepartingInput.dirty ||
+                                            selectedCityDepartingInput.touched)
+                                    "
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -1rem;
+                                        margin-bottom: 1rem;
+                                        margin-left: 0.3rem;
+                                        text-align: left;
+                                    ">
+                                    Please select a city.
+                                </div>
+
+                                <div class="transport-details">
+                                    <label class="form-label fs-5"
+                                        >Transport</label
+                                    >
+
+                                    <div class="transport-type mb-2">
+                                        <label>Transport type:</label>
+                                        <select
+                                            class="form-select form-select-sm mb-3"
+                                            aria-label="Transport type"
+                                            [(ngModel)]="transportType"
+                                            name="selectedTransport"
+                                            #selectedTransportType="ngModel"
+                                            required="">
+                                            <option value="" selected>
+                                                Please select a transport
+                                            </option>
+                                            <option value="Car">Car</option>
+                                            <option value="Bus">Bus</option>
+                                            <option value="Boat">Boat</option>
+                                            <option value="Train">Train</option>
+                                            <option value="Airplane">
+                                                Airplane
+                                            </option>
+                                        </select>
+
+                                        <div
+                                            *ngIf="
+                                                selectedTransportType.invalid &&
+                                                (selectedTransportType.dirty ||
+                                                    selectedTransportType.touched)
+                                            "
+                                            class="text-danger small"
+                                            style="
+                                                margin-top: -1rem;
+                                                margin-bottom: 1rem;
+                                                margin-left: 0.3rem;
+                                                text-align: left;
+                                            ">
+                                            Please select a type of transport.
+                                        </div>
+                                    </div>
+
+                                    <div class="transport-price">
+                                        <label>Transport price:</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            [(ngModel)]="transportPrice"
+                                            placeholder="Transport price"
+                                            name="inputTransportPrice"
+                                            #inputTransportPrice="ngModel"
+                                            required
+                                            pattern="^[1-9]\d*(\.\d+)?$" />
+
+                                        <div
+                                            *ngIf="inputTransportPrice.touched"
+                                            class="text-danger small"
+                                            style="
+                                                margin-top: 0.1rem;
+                                                margin-left: 0.2rem;
+                                                text-align: left;
+                                            ">
+                                            <div
+                                                *ngIf="
+                                                    inputTransportPrice.hasError(
+                                                        'required'
+                                                    )
+                                                ">
+                                                Transport is required.
+                                            </div>
+                                            <div
+                                                *ngIf="
+                                                    inputTransportPrice.hasError(
+                                                        'pattern'
+                                                    )
+                                                ">
+                                                Please enter a valid number (no
+                                                leading zero).
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            class="btn btn-secondary"
+                            data-bs-target="#ModalToggle"
+                            data-bs-toggle="modal">
+                            Back
+                        </button>
+                        <button
+                            class="btn btn-blue"
+                            data-bs-target="#ModalToggle3"
+                            data-bs-toggle="modal">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3-->
+        <div
+            class="modal fade"
+            id="ModalToggle3"
+            aria-hidden="true"
+            aria-labelledby="ModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalToggleLabel3">
+                            New itinerary
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label class="form-label">Accommodation name</label>
+                        <!--validare-->
+                        <!--sa nu fie gol-->
+                        <!--max de 255 de caractere-->
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accomodationName"
+                            aria-describedby="Accommodation details name"
+                            required
+                            name="accomodationName"
+                            #accomodationNameField="ngModel"
+                            minlength="4"
+                            maxlength="255" />
+
+                        <div
+                            *ngIf="accomodationNameField.touched"
+                            class="text-danger small"
+                            style="margin-top: 0.3rem; text-align: left">
+                            <div
+                                *ngIf="
+                                    accomodationNameField.hasError('required')
+                                ">
+                                Accomodation name is required.
+                            </div>
+                            <div
+                                *ngIf="
+                                    accomodationNameField.touched &&
+                                    accomodationNameField.hasError('minlength')
+                                ">
+                                The accomodation name cannot be at least 4
+                                characters long.
+                            </div>
+                        </div>
+
+                        <label class="form-label">Address</label>
+                        <!--validare-->
+                        <!--sa nu fie gol-->
+                        <!--max de 255 de caractere-->
+                        <textarea
+                            type="text"
+                            class="form-control"
+                            rows="3"
+                            [(ngModel)]="addressArea"
+                            aria-describedby="Text area"
+                            required
+                            #addressAreaField="ngModel"
+                            maxlength="255"></textarea>
+
+                        <div
+                            *ngIf="addressAreaField.touched"
+                            class="text-danger small"
+                            style="
+                                margin-top: 0.3rem;
+                                margin-bottom: 0.3rem;
+                                text-align: left;
+                            ">
+                            <div *ngIf="addressAreaField.hasError('required')">
+                                Adress is required.
+                            </div>
+                        </div>
+
+                        <label class="form-label">Price for accomodation</label>
+                        <!--validare-->
+                        <!--sa nu fie gol-->
+                        <!--sa fie float si pozitiv-->
+                        <div class="col-sm-6">
+                            <input
+                                type="text"
+                                class="form-control"
+                                [(ngModel)]="priceAccomodation"
+                                aria-describedby="Price for the whole trip"
+                                required
+                                name="inputPriceAccomodation"
+                                #inputPriceAccomodationField="ngModel"
+                                pattern="^[1-9]\d*(\.\d+)?$" />
+
+                            <div
+                                *ngIf="inputPriceAccomodationField.touched"
+                                class="text-danger small"
+                                style="
+                                    margin-top: 0.1rem;
+                                    margin-left: 0.2rem;
+                                    text-align: left;
+                                ">
+                                <div
+                                    *ngIf="
+                                        inputPriceAccomodationField.hasError(
+                                            'required'
+                                        )
+                                    ">
+                                    Price is required.
+                                </div>
+                                <div
+                                    *ngIf="
+                                        inputPriceAccomodationField.hasError(
+                                            'pattern'
+                                        )
+                                    ">
+                                    Please enter a valid number (no leading
+                                    zero).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            class="btn btn-secondary"
+                            data-bs-target="#ModalToggle2"
+                            data-bs-toggle="modal">
+                            Back
+                        </button>
+
+                        <!--aici trimit toate datele in backend-->
+                        <form #form="ngForm">
+                            <button
+                                type="button"
+                                class="btn btn-blue"
+                                data-bs-toggle="modal"
+                                (click)="insertItinerary(form)">
+                                Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

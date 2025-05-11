@@ -1,0 +1,323 @@
+<div class="custom-background">
+    <div class="container-fluid">
+        <div class="col-md-6 m-auto">
+            <div class="card border-2 shadow">
+                <div class="card-body">
+                    <form class="text-center text-font" #loginForm="ngForm">
+                        <!--- First name -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="firstNameForm">
+                            <div class="col-11">
+                                <input
+                                    type="text"
+                                    class="form-control my-2 py-2 mx-auto"
+                                    placeholder="First name"
+                                    name="firstName"
+                                    [(ngModel)]="firstName"
+                                    required
+                                    #firstNameField="ngModel"
+                                    pattern="\b[A-Z].*?\b" />
+                                <div
+                                    *ngIf="firstNameField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        text-align: left;
+                                        margin-top: -0.3rem;
+                                    ">
+                                    <div
+                                        *ngIf="
+                                            firstNameField.hasError('required')
+                                        ">
+                                        First name is required.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            firstNameField.hasError('pattern')
+                                        ">
+                                        First name must start with an uppercase
+                                        letter.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--- Last name -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="lastNameForm">
+                            <div class="col-11">
+                                <input
+                                    type="text"
+                                    class="form-control my-2 py-2 mx-auto"
+                                    placeholder="Last name"
+                                    name="lastName"
+                                    [(ngModel)]="lastName"
+                                    required
+                                    #lastNameField="ngModel"
+                                    pattern="\b[A-Z].*?\b" />
+                                <div
+                                    *ngIf="lastNameField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        text-align: left;
+                                        margin-top: -0.3rem;
+                                    ">
+                                    <div
+                                        *ngIf="
+                                            lastNameField.hasError('required')
+                                        ">
+                                        Last name is required.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            lastNameField.hasError('pattern')
+                                        ">
+                                        Last name must start with an uppercase
+                                        letter.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--- Phone number -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="phoneNumberForm">
+                            <div class="col-11">
+                                <input
+                                    type="text"
+                                    class="form-control my-2 py-2 mx-auto"
+                                    placeholder="Phone number"
+                                    name="phoneNumber"
+                                    [(ngModel)]="phoneNumber"
+                                    required
+                                    #phoneNumberField="ngModel"
+                                    maxlength="10"
+                                    pattern="^07[2-8]\d{7}$" />
+                                <div
+                                    *ngIf="phoneNumberField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        text-align: left;
+                                        margin-top: -0.3rem;
+                                    ">
+                                    <div
+                                        *ngIf="
+                                            phoneNumberField.hasError(
+                                                'required'
+                                            )
+                                        ">
+                                        Phone number is required.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            phoneNumberField.hasError('pattern')
+                                        ">
+                                        Please enter a valid phone number.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--- Email -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="emailForm">
+                            <div class="col-11">
+                                <input
+                                    type="email"
+                                    class="form-control my-2 py-2 mx-auto"
+                                    placeholder="Email"
+                                    [(ngModel)]="email"
+                                    name="email"
+                                    required
+                                    email
+                                    #emailField="ngModel" />
+
+                                <div
+                                    *ngIf="emailField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        text-align: left;
+                                        margin-top: -0.3rem;
+                                    ">
+                                    <div
+                                        *ngIf="emailField.hasError('required')">
+                                        Email is required.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            emailField.hasError('email') &&
+                                            !emailField.hasError('required')
+                                        ">
+                                        Please enter a valid email address.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--- Password -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="passwordForm"
+                            [ngClass]="{
+                                'has-error':
+                                    passwordField.invalid &&
+                                    (passwordField.dirty ||
+                                        passwordField.touched)
+                            }">
+                            <div class="col-11">
+                                <div
+                                    class="input-group d-flex justify-content-center">
+                                    <input
+                                        type="{{
+                                            hidePassword ? 'password' : 'text'
+                                        }}"
+                                        class="form-control my-2 py-2"
+                                        placeholder="Password"
+                                        [(ngModel)]="password"
+                                        name="password"
+                                        required
+                                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).*$"
+                                        minlength="6"
+                                        #passwordField="ngModel" />
+                                    <button
+                                        class="btn btn-blue btn-outline-secondary my-2 py-2"
+                                        type="button"
+                                        (click)="togglePasswordVisibility()">
+                                        <i
+                                            class="bi bi-eye{{
+                                                hidePassword ? '-slash' : ''
+                                            }}"></i>
+                                    </button>
+                                </div>
+                                <div
+                                    *ngIf="passwordField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -0.3rem;
+                                        text-align: left;
+                                    ">
+                                    <div
+                                        *ngIf="
+                                            passwordField.hasError('required')
+                                        ">
+                                        Password is required
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            passwordField.hasError('minlength')
+                                        ">
+                                        Password must be at least 6 characters
+                                        long.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            passwordField.hasError('pattern')
+                                        ">
+                                        Password must contain at least a special
+                                        character, a number, an uppercase letter
+                                        and a lowercase letter.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--- Confirm password -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="passwordForm"
+                            [ngClass]="{
+                                'has-error':
+                                    passwordField.invalid &&
+                                    (passwordField.dirty ||
+                                        passwordField.touched)
+                            }">
+                            <div class="col-11">
+                                <div
+                                    class="input-group d-flex justify-content-center">
+                                    <input
+                                        type="{{
+                                            hidePassword ? 'password' : 'text'
+                                        }}"
+                                        class="form-control my-2 py-2"
+                                        placeholder="Confirm password"
+                                        [(ngModel)]="confirmPassword"
+                                        name="confirmPassword"
+                                        required
+                                        minlength="6"
+                                        #confirmPasswordField="ngModel" />
+                                </div>
+                                <div
+                                    *ngIf="
+                                        confirmPasswordField.touched &&
+                                        confirmPasswordField.hasError(
+                                            'required'
+                                        )
+                                    "
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -0.3rem;
+                                        text-align: left;
+                                    ">
+                                    Please confirm your password.
+                                </div>
+
+                                <!-- Check if passwords matched-->
+
+                                <div
+                                    *ngIf="
+                                        passwordField.value !==
+                                            confirmPasswordField.value &&
+                                        confirmPasswordField.touched
+                                    "
+                                    class="text-danger small"
+                                    style="
+                                        margin-top: -0.3rem;
+                                        text-align: left;
+                                    ">
+                                    Passwords did not match.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Register button-->
+                        <div class="form-group mt-3">
+                            <button
+                                type="button"
+                                class="btn btn-blue btn-outline-light"
+                                data-bs-toggle="button"
+                                (click)="signup()">
+                                Register
+                            </button>
+                            <div
+                                *ngIf="emailField.touched"
+                                class="text-danger small"
+                                style="text-align: center">
+                                <div *ngIf="errorMessage" class="error-message">
+                                    {{ errorMessage }}
+                                </div>
+                            </div>
+                            <br />
+
+                            <!-- Link back to login -->
+
+                            <a
+                                href="/login"
+                                class="link-dark link-opacity-50-hover"
+                                >Already have an account?</a
+                            >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

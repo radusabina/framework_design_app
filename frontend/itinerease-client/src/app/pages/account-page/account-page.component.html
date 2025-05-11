@@ -1,0 +1,182 @@
+<div class="custom-background text-font">
+    <div class="container-fluid">
+        <div class="col-md-6 m-auto">
+            <div class="card border-2 shadow" style="border-radius: 1rem">
+                <div class="card-body">
+                    <form class="text-center text-font">
+                        <div class="row justify-content-around my-2">
+                            <div class="col-5 rounded position-relative">
+                                <!-- Conținut pentru prima coloană -->
+                                <div>
+                                    <span class="arrow-up">
+                                        <button class="arrow-back">
+                                            <i
+                                                class="bi bi-arrow-left text-light"
+                                                (click)="backToHomePage()"></i>
+                                        </button>
+                                    </span>
+                                    <img
+                                        src="https://i.postimg.cc/nzg65H88/Whats-App-Image-2023-11-20-at-22-52-50.jpg"
+                                        class="rounded-circle img-fluid w-50 mx-auto d-block" />
+
+                                    <h1 class="title">
+                                        {{ firstName }} {{ lastName }}
+                                    </h1>
+
+                                    <div
+                                        class="d-flex flex-column align-items-center">
+                                        <!-- Container pentru alinierea butoanelor -->
+                                        <!-- Primul buton -->
+                                        <button
+                                            type="button"
+                                            class="btn-home-back mb-3 justify-content-center"
+                                            (click)="logOf()">
+                                            <h2 class="log-out">Log out</h2>
+                                        </button>
+                                        <!-- Al doilea buton -->
+                                        <button
+                                            type="button"
+                                            class="btn-home-back justify-content-center"
+                                            style="background-color: #d9d9d9">
+                                            <h2
+                                                class="delete-account"
+                                                (click)="deleteUser()">
+                                                Delete account
+                                            </h2>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Linia verticală simulată -->
+                                <div class="vertical-line"></div>
+                            </div>
+
+                            <div class="col-5">
+                                <!-- Conținut pentru a doua coloană -->
+                                <!-- de aici in jos-->
+                                <form>
+                                    <!--<div *ngIf="loggedUser">-->
+                                    <div class="text-account-settings">
+                                        <h3 class="Account-settings">
+                                            Account settings
+                                        </h3>
+                                    </div>
+
+                                    <div class="text-inputs-name">
+                                        <h4 class="Account-settings">
+                                            First name
+                                        </h4>
+                                    </div>
+                                    <!-- input pentru first name-->
+                                    <div class="input-group-prepend">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            [(ngModel)]="firstName"
+                                            #firstNameField="ngModel"
+                                            name="firstName"
+                                            placeholder="First name" />
+                                    </div>
+
+                                    <div class="text-inputs-name">
+                                        <h4 class="Account-settings">
+                                            Last name
+                                        </h4>
+                                    </div>
+                                    <!-- input pentru last name-->
+                                    <div class="input-group-prepend">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            [(ngModel)]="lastName"
+                                            name="lastName"
+                                            placeholder="Last name" />
+                                    </div>
+
+                                    <div class="text-inputs-name">
+                                        <h4 class="Account-settings">
+                                            Phone number
+                                        </h4>
+                                    </div>
+                                    <!-- input pentru nr de telefon-->
+                                    <div class="input-group-prepend">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            [(ngModel)]="phoneNumber"
+                                            name="phoneNumber"
+                                            placeholder="Phone number" />
+                                    </div>
+
+                                    <div class="text-inputs-name">
+                                        <h4 class="Account-settings">
+                                            Email address
+                                        </h4>
+                                    </div>
+                                    <!-- input pentru email-->
+                                    <div class="input-group-prepend">
+                                        <input
+                                            type="text"
+                                            class="form-control input"
+                                            [(ngModel)]="email"
+                                            [readonly]="!enableEmailEdit"
+                                            name="email"
+                                            placeholder="Email address" />
+                                    </div>
+
+                                    <div class="text-inputs-name">
+                                        <h4 class="Account-settings">
+                                            Password
+                                        </h4>
+                                    </div>
+                                    <!-- input pentru parola-->
+                                    <div class="input-group">
+                                        <input
+                                            [type]="
+                                                passwordVisible
+                                                    ? 'text'
+                                                    : 'password'
+                                            "
+                                            class="form-control"
+                                            [(ngModel)]="password"
+                                            id="password"
+                                            name="password"
+                                            placeholder="Password" />
+                                        <div class="input-group-append">
+                                            <span
+                                                class="input-group-text toggle-password"
+                                                (click)="
+                                                    togglePasswordVisibility()
+                                                ">
+                                                <i
+                                                    class="bi bi-eye-slash"
+                                                    id="togglePassword"
+                                                    [ngClass]="
+                                                        passwordVisible
+                                                            ? 'bi-eye'
+                                                            : 'bi-eye-slash'
+                                                    "></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--</div>-->
+                                </form>
+                                <div>
+                                    <button
+                                        type="button"
+                                        class="btn-save-mofidy mb-4 mt-4 justify-content-center">
+                                        <h2
+                                            class="save-update"
+                                            (click)="modifyUser()">
+                                            Save
+                                        </h2>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.custom-background {
+    background-image: url('https://i.postimg.cc/dVhYj6DS/Whats-App-Image-2023-11-20-at-21-54-54.jpg');
+    max-height: 28.125rem;
+    background-size: cover;
+    background-position: top center;
+    color: white;
+    .container-fluid {
+        max-width: 60.625rem;
+        align-items: center;
+        padding-top: 12.5rem;
+    }
+}
+
+.btn-blue {
+    background-color: #4c77a6;
+    color: white;
+}
