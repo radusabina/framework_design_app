@@ -197,3 +197,196 @@ Key annotations:
 
 - `@Configuration`: Marks the class as a source of bean definitions for the application context.
 - `@EnableWebMvc`: Enables full Spring MVC configuration, allowing for advanced customization of web behaviors.
+
+## **Frontend**
+
+### Folder structure
+
+The frontend is built using Angular and follows a component-based architecture. Below is an overview of the main folders and their responsibilities:
+
+- `config`: Contains global variables (endpointAPI, which defines the base URL for backend communication)
+- `dtos`: Stores Data Transfer Object (DTO) interfaces and models that define the structure of data exchanged between the frontend and backend. These help ensure type safety and consistency across the app.
+- `pages`: Contains the main components grouped by feature or route. Each subfolder typically includes an Angular component, its HTML template, styles, and logic, making it easy to manage feature-specific UI.
+- `services`: Includes injectable Angular services responsible for handling HTTP requests, business logic, and data interaction between the frontend and backend APIs.
+- `app.component.ts`: The root module that imports and declares the entire application.
+
+### dtos
+
+This folder contains Data Transfer Object (DTO) interfaces used to define the shape of data exchanged between the frontend and backend. By using interfaces, Angular ensures strong typing, better code completion, and improved maintainability. DTOs act as a contract between both sides of the application, helping to catch inconsistencies early during development.
+
+For example, a DTO representing a location might look like this:
+
+```ts
+export interface ILocation {
+  id: number;
+  country: string;
+  city: string;
+}
+```
+
+This interface can then be used throughout the application to ensure that any variable or response expected to be of type ILocation strictly follows this structure.
+
+### pages
+
+This folder contains the main Angular components that represent individual pages in the application, such as the login page, itinerary page, homepage etc. Each page is implemented as an Angular component and typically consists of an HTML template, a TypeScript class, and an SCSS stylesheet.
+
+Components in this folder were generated using the Angular CLI with the following command:
+
+```bash
+   ng generate component pages/component-name
+```
+
+This command creates a new folder with all necessary files (.ts, .html, .css, and .spec.ts) under the pages/ directory, and automatically declares the component in the appropriate module.
+
+The application primarily uses Bootstrap to handle styling and layout. Bootstrap is a popular CSS framework that provides a wide range of prebuilt components and utility classes for responsive design and consistent UI. Examples of Bootstrap components used include:
+
+- Buttons (`btn`, `btn-primary`) – to create interactive elements like “Submit” or “Delete”
+- Cards (`card`, `card-body`) – to display grouped content in a structured container
+- Grids (`row`, `col-md-6`) – to arrange elements in a responsive layout
+- Forms (`form-contro`l, `form-group`) – to style input fields and labels
+
+Thanks to Bootstrap, all page layouts are responsive by default. The application adapts well to different screen sizes, making it usable on both desktop and mobile devices.
+
+### Routing
+
+Each page component in the application is typically associated with a specific route, defined in Angular’s routing module. This setup allows users to navigate between different parts of the application by changing the URL, without reloading the entire page. Angular’s RouterModule handles this efficiently using client-side routing.
+
+Routes are defined in a dedicated routing configuration file, usually named `app.routes.ts`. Each route maps a URL path to a corresponding component. Here is an example:
+
+```ts
+export const routes: Routes = [
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "login", component: LoginComponent },
+  { path: "homepage", component: HomepageComponent },
+  { path: "signup", component: SignupComponent },
+  { path: "account-page", component: AccountPageComponent },
+  { path: "itinerary/:id", component: ItineraryDetailsPageComponent },
+];
+```
+
+- `login` renders the LoginComponent
+- `homepage` renders the HomepageComponent
+- `signup` renders the SignupComponent
+- `account-page` renders the AccountPageComponent
+- `itinerary/:id` renders the ItineraryDetailsPageComponent
+- An empty path ('') redirects to the login page
+
+### services
+
+In Angular, services are used to encapsulate and manage business logic, data fetching, and reusable functionality that can be shared across multiple components. Instead of duplicating logic in each component, services provide a centralized way to handle operations such as HTTP requests, state management, and utility functions.
+
+A service in Angular is typically created using the Angular CLI command:
+
+```bash
+ng generate service service-name
+```
+
+or, more concisely:
+
+```bash
+ng g s service-name
+```
+
+Angular CLI automatically creates the following two files in the specified folder:
+
+- `service-name.service.ts`: This is the main service file that contains the class definition. Here, you implement the logic such as HTTP requests, data manipulation, or shared functionality.
+- `service-name.service.spec.ts`: This is a unit test. It’s used to test the functionality of the service.
+
+The project includes three key services, each responsible for handling specific functionality:
+
+- `User Service`: Responsible for managing user-related operations, such as authentication, registration, and profile management. It typically handles requests for logging in, logging out, and retrieving user information.
+- `Itinerary Service`: Deals with the creation, modification, and retrieval of itineraries. This service manages the planning of trips, including the addition of destinations, dates, and other relevant information associated with a user’s journey.
+- `Attraction Service`: Focuses on handling information related to attractions or points of interest. This service is responsible for fetching details about tourist spots, including their names, descriptions, locations, and other related data.
+
+In this project, we make HTTP requests to the backend using Angular's HttpClient. Each service makes use of these HTTP calls to communicate with the backend API, sending data and receiving responses based on the application's needs.
+
+For example, in the UserService, several HTTP methods are used to interact with the API:
+
+- `GET Request`: This method is used to retrieve data. In this case, the service may fetch information about the logged-in user. For instance, getLoggedUserDetails makes a POST request to the backend, sending the user credentials and retrieving the user details.
+- `POST Request`: This is used to send data to the server for operations like creating or logging in a user. For example, signUpUser sends user signup data to the backend API using a POST request.
+- `PUT Request`: This request is used to update existing data on the server. The updateUser method uses a PUT request to update user information.
+- `DELETE Request`: This is used to delete data from the backend. The deleteUser method sends a DELETE request to remove the user from the system.
+
+Here is an example of how a service like UserService performs these API calls:
+
+```ts
+    signUpUser(credentials: IUserSignup): Observable<IUser> {
+        return this.http.post<IUser>(endpointAPI + 'user/signup', credentials);
+    }
+
+    // Sends a PUT request to update user information
+    updateUser(credentials: IUserSignup): Observable<IUser> {
+        return this.http.put<IUser>(endpointAPI + 'user', credentials);
+    }
+
+    // Sends a DELETE request to remove a user by their email
+    deleteUser(email: string): Observable<IUser> {
+        return this.http.delete<IUser>(endpointAPI + 'user/' + email);
+    }
+```
+
+Key Concepts:
+
+- HttpClient: Angular's built-in service used to make HTTP requests.
+- Observable: A stream of data that can be subscribed to, providing asynchronous handling of HTTP responses.
+- endpointAPI: A central configuration holding the base API endpoint for all HTTP requests.
+
+This modular approach allows each service to be responsible for a specific part of the application's functionality, making the codebase more maintainable and organized. Each service communicates with the backend via well-defined API calls, ensuring that the frontend can retrieve, update, and delete data as needed.
+
+## Running the Application
+
+To run the application locally, you need to start both the backend (Spring Boot) and the frontend (Angular) projects. Follow the steps below to configure and launch everything correctly:
+
+1. Set Up the Database Connection
+
+The backend uses PostgreSQL as its database. Before starting the Spring Boot server, you need to make sure your local PostgreSQL instance is running and a database is created for the application.
+
+Then, open the application.yaml file in the backend project and update the database connection credentials to match your local setup:
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/your_database_name
+    username: your_postgres_username
+    password: your_postgres_password
+```
+
+Make sure that:
+
+- The database exists.
+- The credentials are valid.
+- PostgreSQL is running on port 5432 (or modify the URL accordingly if different).
+
+2. Run the Backend (Spring Boot)
+
+Once the database is set up, you can run the backend application using IntelliJ:
+Open the project in IntelliJ IDEA.
+Locate the main class (usually DemoApplication.java or similar).
+Right-click the class and choose Run.
+
+Alternatively, use the terminal:
+
+```bash
+./mvnw spring-boot:run
+```
+
+The backend will start on http://localhost:8080 by default.
+
+3. Set Up and Run the Frontend (Angular)
+
+Now, move to the Angular frontend project:
+Open a terminal inside the frontend project folder.
+Run the following command to install the required dependencies:
+
+```bash
+npm install
+```
+
+Once installation is complete, start the development server with:
+
+```bash
+ng serve -o
+```
+
+The -o flag automatically opens the app in your default browser. Angular runs on http://localhost:4200 by default.
+After following these steps, the frontend should be connected to the backend, and you’ll be able to fully use the application locally.
