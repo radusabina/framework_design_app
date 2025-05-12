@@ -69,9 +69,7 @@ export class ModalsComponent {
 
     //constructor
     constructor(
-        private router: Router,
         private itineraryService: ItineraryService,
-        private route: ActivatedRoute,
         private userService: UserService,
         private containerComponent: ContainerComponent,
     ) {

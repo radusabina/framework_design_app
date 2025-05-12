@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IUserSignup } from '../../dtos/IUserSignup';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service/user.service';
-import { error } from 'console';
 import { IUser } from '../../dtos/IUser';
 
 @Component({
